@@ -13,24 +13,57 @@ struct SettingView: View {
     @EnvironmentObject var colorSettings: ColorSettings
     @AppStorage("showAbsentStudent") private var showAbsentStudent: Bool = true
     @State private var showConfirm = false
+    @State private var price = 500000
     @EnvironmentObject var authModel : AuthenticationModel
+    @EnvironmentObject var viewModel : ClassRoomViewModel
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Appearance")) {
                     ColorPicker("Set Accent Color", selection: $colorSettings.textColor)
+                    
                     Button("Apply Change") {
                         showConfirm = true
                     }
                     .tint(.red)
                     Button("Restore Default Color") {
                         colorSettings.textColor = Color.init(hex: 0xC0D06D)
+                        showConfirm = true
                     }
                 }
                 
                 Section(header: Text("Features")) {
                     Toggle("Absent Student", isOn: $showAbsentStudent)
                 }
+                
+                Section(header: Text("Money 💰")) {
+                    HStack(content: {
+                        Text("Students")
+                            .foregroundColor(colorSettings.textColor.opacity(0.6))
+                        Spacer()
+                        Text("\(viewModel.classrooms.map({$0.students.count}).reduce(0, +))")
+                            .foregroundColor(colorSettings.textColor)
+                        
+                        
+                    })
+                    Stepper(value: $price, step: 100000) {
+                        HStack(content: {
+                            Text("\(price) đ")
+                                .foregroundColor(colorSettings.textColor)
+                            Text("/Student")
+                                .foregroundColor(colorSettings.textColor.opacity(0.6))
+                        })
+                    }
+                    HStack(content: {
+                        Text("Profit")
+                            .foregroundColor(colorSettings.textColor.opacity(0.6))
+                        Spacer()
+                        Text("\(price * viewModel.classrooms.map({$0.students.count}).reduce(0, +)) đ")
+                            .foregroundColor(colorSettings.textColor)
+                        
+                    })
+                }
+                
                 
                 Section(header: Text("Privacy")) {
                     Link(destination: URL(string: "https://edit.codes")!, label: {
@@ -60,6 +93,8 @@ struct SettingView: View {
                 isPresented = false
             }.tint(colorSettings.textColor))
             .alert(isPresented: $showConfirm, content: { confirmChange })
+            .onAppear(perform: {
+            })
         }
     }
     

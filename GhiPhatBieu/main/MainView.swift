@@ -123,6 +123,7 @@ struct MainView: View {
         }).tint(colorSettings.textColor))
         .sheet(isPresented: $showingSetting) {
             SettingView(isPresented: $showingSetting)
+                .environmentObject(viewModel)
         }
         
     }
