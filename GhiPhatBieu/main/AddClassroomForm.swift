@@ -12,6 +12,7 @@ struct AddClassroomForm: View {
     @State private var editingStudent: Student?
     @State private var selectedDays: Set<Int> = []
     @EnvironmentObject var colorSettings: ColorSettings
+    @FocusState private var isClassNameFocused: Bool
     var isEditMode: Bool {
         return classroom != nil
     }
@@ -21,6 +22,7 @@ struct AddClassroomForm: View {
             Form {
                 Section(header: Text("Classroom Details")) {
                     TextField("Classroom Name", text: $classroomName)
+                        .focused($isClassNameFocused)
                 }
                 
                 Section(header: Text("Students")) {
@@ -112,6 +114,8 @@ struct AddClassroomForm: View {
                     students = Array(classroom.students.values)
                     selectedDays = Set(classroom.time)
                 }
+                
+                isClassNameFocused = true
             }
         }
         .sheet(isPresented: $showingAddStudentForm) {

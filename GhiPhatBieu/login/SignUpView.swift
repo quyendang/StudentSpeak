@@ -56,8 +56,12 @@ struct SignUpView: View {
                         }
                     }
                 })
+                .frame(maxWidth: 600)
                 .padding()
                 .navigationTitle("Create an account")
+                .navigationBarItems(leading: Button("Cancle", action: {
+                    isPresented = false
+                }).tint(colorSettings.textColor))
                 .alert(errorMesssage ?? "", isPresented: $showingAlert) {
                     Button("OK") { }
                 }

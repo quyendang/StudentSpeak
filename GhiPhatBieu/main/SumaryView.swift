@@ -10,9 +10,27 @@ import Charts
 
 struct SumaryView: View {
     @Binding var isPresented: Bool
+    @State private var showAlert = false
     var students: [Student]
     var viewModel: StudentViewModel
     @EnvironmentObject var colorSettings: ColorSettings
+    
+    var confirmReset: Alert {
+        Alert(title: Text("Reset?"), message: Text("After reset, Num of Star and Absent will return 0 .\n\nDo you want to reset all data of this class?"),
+              primaryButton: .destructive (Text("Yes")) {
+            resetData()
+        },
+              secondaryButton: .cancel(Text("No"))
+        )
+    }
+    
+    private func resetData() {
+        let newStudents = viewModel.students.map { student in
+            Student(id: student.id, avatar: student.avatar, name: student.name, score: 0, absents: [])
+        }
+        viewModel.updateStudents(students: newStudents)
+    }
+    
     var body: some View {
         NavigationView(content: {
             List {
@@ -46,17 +64,17 @@ struct SumaryView: View {
             }
             .navigationTitle("Sumary")
             .navigationBarItems(trailing: Button(action: {
-                let newStudents = viewModel.students.map { student in
-                    Student(id: student.id, avatar: student.avatar, name: student.name, score: 0, absents: [])
-                }
-                viewModel.updateStudents(students: newStudents)
+                showAlert = true
             }, label: {
-                Text("Reset Data")
+                Text("Reset")
             })
                 .tint(.red))
             .navigationBarItems(leading: Button("Cancel") {
                 isPresented = false
             }.tint(colorSettings.textColor))
+            .alert(isPresented: $showAlert, content: {
+                confirmReset
+            })
         })
         
     }

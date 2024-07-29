@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4870A24E2C56826C009AA6E4 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 4870A24D2C56826C009AA6E4 /* AlertToast */; };
+		4870A2512C56A63A009AA6E4 /* in.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4870A24F2C56A639009AA6E4 /* in.mp3 */; };
+		4870A2522C56A63A009AA6E4 /* out.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4870A2502C56A63A009AA6E4 /* out.mp3 */; };
 		489E771E2C3BA15A00B5EA60 /* GhiPhatBieuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E771D2C3BA15A00B5EA60 /* GhiPhatBieuApp.swift */; };
 		489E77202C3BA15A00B5EA60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E771F2C3BA15A00B5EA60 /* ContentView.swift */; };
 		489E77222C3BA15B00B5EA60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 489E77212C3BA15B00B5EA60 /* Assets.xcassets */; };
@@ -29,7 +32,6 @@
 		489E774D2C3BA6B600B5EA60 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 489E774C2C3BA6B600B5EA60 /* FirebaseMessaging */; };
 		489E774F2C3BA6B600B5EA60 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 489E774E2C3BA6B600B5EA60 /* FirebaseStorage */; };
 		489E77512C3BA6B600B5EA60 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 489E77502C3BA6B600B5EA60 /* FirebaseStorageCombine-Community */; };
-		489E77542C3BA71D00B5EA60 /* TTProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 489E77532C3BA71D00B5EA60 /* TTProgressHUD */; };
 		489E77572C3BA73200B5EA60 /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E77562C3BA73200B5EA60 /* AuthenticationModel.swift */; };
 		489E775A2C3BA76900B5EA60 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E77592C3BA76900B5EA60 /* String.swift */; };
 		489E775C2C3BA85800B5EA60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E775B2C3BA85800B5EA60 /* LoginView.swift */; };
@@ -79,12 +81,14 @@
 		48F7E0ED2C54C07D00133D87 /* tada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 48F7E0EC2C54C07D00133D87 /* tada.mp3 */; };
 		48F7E0EF2C54E46500133D87 /* SumaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7E0EE2C54E46500133D87 /* SumaryView.swift */; };
 		48F7E0F12C54E64600133D87 /* StudentInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7E0F02C54E64600133D87 /* StudentInfoItem.swift */; };
-		48F7E0F32C54F55B00133D87 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7E0F22C54F55B00133D87 /* NavigationBarModifier.swift */; };
 		48F7E0F52C54FB7D00133D87 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7E0F42C54FB7D00133D87 /* SignUpView.swift */; };
 		48F7E0F72C54FB8C00133D87 /* ForgotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7E0F62C54FB8C00133D87 /* ForgotView.swift */; };
+		48FA34902C564AFC00EECF1F /* OpenAITTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA348F2C564AFC00EECF1F /* OpenAITTS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4870A24F2C56A639009AA6E4 /* in.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = in.mp3; sourceTree = "<group>"; };
+		4870A2502C56A63A009AA6E4 /* out.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = out.mp3; sourceTree = "<group>"; };
 		489E771A2C3BA15A00B5EA60 /* GhiPhatBieu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhiPhatBieu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		489E771D2C3BA15A00B5EA60 /* GhiPhatBieuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhiPhatBieuApp.swift; sourceTree = "<group>"; };
 		489E771F2C3BA15A00B5EA60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -143,9 +147,9 @@
 		48F7E0EC2C54C07D00133D87 /* tada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tada.mp3; sourceTree = "<group>"; };
 		48F7E0EE2C54E46500133D87 /* SumaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumaryView.swift; sourceTree = "<group>"; };
 		48F7E0F02C54E64600133D87 /* StudentInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoItem.swift; sourceTree = "<group>"; };
-		48F7E0F22C54F55B00133D87 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		48F7E0F42C54FB7D00133D87 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		48F7E0F62C54FB8C00133D87 /* ForgotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotView.swift; sourceTree = "<group>"; };
+		48FA348F2C564AFC00EECF1F /* OpenAITTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAITTS.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +161,7 @@
 				489E77512C3BA6B600B5EA60 /* FirebaseStorageCombine-Community in Frameworks */,
 				489E774D2C3BA6B600B5EA60 /* FirebaseMessaging in Frameworks */,
 				489E774B2C3BA6B600B5EA60 /* FirebaseDatabaseSwift in Frameworks */,
-				489E77542C3BA71D00B5EA60 /* TTProgressHUD in Frameworks */,
+				4870A24E2C56826C009AA6E4 /* AlertToast in Frameworks */,
 				489E77412C3BA6B600B5EA60 /* FirebaseAnalyticsSwift in Frameworks */,
 				489E774F2C3BA6B600B5EA60 /* FirebaseStorage in Frameworks */,
 				489E77472C3BA6B600B5EA60 /* FirebaseAuthCombine-Community in Frameworks */,
@@ -209,6 +213,8 @@
 				48F7E0EC2C54C07D00133D87 /* tada.mp3 */,
 				48F7E0E62C54B3A400133D87 /* congratulations.mp3 */,
 				48F7E0E42C54B34600133D87 /* upstar.mp3 */,
+				4870A24F2C56A639009AA6E4 /* in.mp3 */,
+				4870A2502C56A63A009AA6E4 /* out.mp3 */,
 				48F7E0EA2C54BEB600133D87 /* sword.mp3 */,
 				48F7E0BC2C50E05100133D87 /* loadgun.mp3 */,
 				48F7E0BA2C50DE5600133D87 /* drawsword.mp3 */,
@@ -315,7 +321,6 @@
 				489E77812C3E279F00B5EA60 /* ParticleEffect.swift */,
 				48F7E0A02C4BF7B800133D87 /* LoadingEffect.swift */,
 				48F7E0A72C4C5A7600133D87 /* StarReductionEffect.swift */,
-				48F7E0F22C54F55B00133D87 /* NavigationBarModifier.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				48F7E0BF2C5348A400133D87 /* ColorSettings.swift */,
+				48FA348F2C564AFC00EECF1F /* OpenAITTS.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -383,12 +389,12 @@
 				489E774C2C3BA6B600B5EA60 /* FirebaseMessaging */,
 				489E774E2C3BA6B600B5EA60 /* FirebaseStorage */,
 				489E77502C3BA6B600B5EA60 /* FirebaseStorageCombine-Community */,
-				489E77532C3BA71D00B5EA60 /* TTProgressHUD */,
 				489E77732C3C040E00B5EA60 /* PopupView */,
 				489E77882C3E550800B5EA60 /* SDWebImageSwiftUI */,
 				48F7E0982C4A0A8C00133D87 /* SDWebImage */,
 				48F7E09A2C4A0A8C00133D87 /* SDWebImageMapKit */,
 				48F7E0E22C53F0F700133D87 /* ConfettiSwiftUI */,
+				4870A24D2C56826C009AA6E4 /* AlertToast */,
 			);
 			productName = GhiPhatBieu;
 			productReference = 489E771A2C3BA15A00B5EA60 /* GhiPhatBieu.app */;
@@ -420,11 +426,11 @@
 			mainGroup = 489E77112C3BA15A00B5EA60;
 			packageReferences = (
 				489E773B2C3BA6B600B5EA60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				489E77522C3BA71D00B5EA60 /* XCRemoteSwiftPackageReference "TTProgressHUD" */,
 				489E77722C3C040E00B5EA60 /* XCRemoteSwiftPackageReference "PopupView" */,
 				489E77872C3E550800B5EA60 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				48F7E0972C4A0A8C00133D87 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				48F7E0E12C53F0F700133D87 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				4870A24C2C56826C009AA6E4 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 489E771B2C3BA15A00B5EA60 /* Products */;
 			projectDirPath = "";
@@ -441,10 +447,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				48F7E09F2C4BC47600133D87 /* down.mp3 in Resources */,
+				4870A2522C56A63A009AA6E4 /* out.mp3 in Resources */,
 				48F7E0ED2C54C07D00133D87 /* tada.mp3 in Resources */,
 				48F7E0E72C54B3A400133D87 /* congratulations.mp3 in Resources */,
 				489E77332C3BA23400B5EA60 /* OpenSans-SemiBold.ttf in Resources */,
 				489E77322C3BA23400B5EA60 /* OpenSans-Medium.ttf in Resources */,
+				4870A2512C56A63A009AA6E4 /* in.mp3 in Resources */,
 				489E773A2C3BA57000B5EA60 /* GoogleService-Info.plist in Resources */,
 				489E77842C3E4F1600B5EA60 /* yipee.mp3 in Resources */,
 				48F7E0EB2C54BEB600133D87 /* sword.mp3 in Resources */,
@@ -490,6 +498,7 @@
 				489E77572C3BA73200B5EA60 /* AuthenticationModel.swift in Sources */,
 				489E778B2C3E954F00B5EA60 /* RandomView.swift in Sources */,
 				489E77202C3BA15A00B5EA60 /* ContentView.swift in Sources */,
+				48FA34902C564AFC00EECF1F /* OpenAITTS.swift in Sources */,
 				489E775E2C3BAABF00B5EA60 /* TextFieldView.swift in Sources */,
 				489E777E2C3D5AD800B5EA60 /* StudentView.swift in Sources */,
 				489E776D2C3BC2DB00B5EA60 /* Student.swift in Sources */,
@@ -507,7 +516,6 @@
 				48F7E0F52C54FB7D00133D87 /* SignUpView.swift in Sources */,
 				489E776B2C3BC2CA00B5EA60 /* Classroom.swift in Sources */,
 				48F7E0C02C5348A400133D87 /* ColorSettings.swift in Sources */,
-				48F7E0F32C54F55B00133D87 /* NavigationBarModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,7 +648,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GhiPhatBieu/GhiPhatBieu.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"GhiPhatBieu/Preview Content\"";
 				DEVELOPMENT_TEAM = MMMG6T3Z8H;
 				ENABLE_PREVIEWS = YES;
@@ -673,7 +681,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GhiPhatBieu/GhiPhatBieu.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"GhiPhatBieu/Preview Content\"";
 				DEVELOPMENT_TEAM = MMMG6T3Z8H;
 				ENABLE_PREVIEWS = YES;
@@ -723,20 +731,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4870A24C2C56826C009AA6E4 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
 		489E773B2C3BA6B600B5EA60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.28.1;
-			};
-		};
-		489E77522C3BA71D00B5EA60 /* XCRemoteSwiftPackageReference "TTProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/honkmaster/TTProgressHUD.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.5;
 			};
 		};
 		489E77722C3C040E00B5EA60 /* XCRemoteSwiftPackageReference "PopupView" */ = {
@@ -774,6 +782,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4870A24D2C56826C009AA6E4 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4870A24C2C56826C009AA6E4 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
 		489E773C2C3BA6B600B5EA60 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 489E773B2C3BA6B600B5EA60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -828,11 +841,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 489E773B2C3BA6B600B5EA60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
-		};
-		489E77532C3BA71D00B5EA60 /* TTProgressHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 489E77522C3BA71D00B5EA60 /* XCRemoteSwiftPackageReference "TTProgressHUD" */;
-			productName = TTProgressHUD;
 		};
 		489E77732C3C040E00B5EA60 /* PopupView */ = {
 			isa = XCSwiftPackageProductDependency;

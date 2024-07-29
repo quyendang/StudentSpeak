@@ -24,7 +24,7 @@ struct Group2View: View {
             let columns = Array(repeating: GridItem(.flexible(minimum: 158)), count: numberOfColumnsByGroup)
             HStack(spacing: 0) {
                 VStack {
-                    Text("Rabbit Team")
+                    Text("Rabbit")
                         .font(.largeTitle)
                         .foregroundStyle(colorSettings.textColor)
                     
@@ -88,7 +88,7 @@ struct Group2View: View {
                     .padding(10)
                 
                 VStack {
-                    Text("Turtle Team")
+                    Text("Turtle")
                         .font(.largeTitle)
                         .foregroundStyle(colorSettings.textColor)
                     ScrollView {

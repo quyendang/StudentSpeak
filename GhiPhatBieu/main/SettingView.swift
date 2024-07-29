@@ -12,6 +12,7 @@ struct SettingView: View {
     @Binding var isPresented: Bool
     @EnvironmentObject var colorSettings: ColorSettings
     @AppStorage("showAbsentStudent") private var showAbsentStudent: Bool = true
+    @AppStorage("studentNameVoice") private var studentNameVoice: Bool = true
     @State private var showConfirm = false
     @State private var price = 500000
     @EnvironmentObject var authModel : AuthenticationModel
@@ -34,6 +35,7 @@ struct SettingView: View {
                 
                 Section(header: Text("Features")) {
                     Toggle("Absent Student", isOn: $showAbsentStudent)
+                    Toggle("Voice For Student Name", isOn: $studentNameVoice)
                 }
                 
                 Section(header: Text("Money 💰")) {

@@ -46,6 +46,8 @@ struct RandomView: View {
                     HStack{
                         Image(systemName: "shuffle")
                         Text("Pick again")
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                     }
                 })
                 .buttonStyle(.borderedProminent)

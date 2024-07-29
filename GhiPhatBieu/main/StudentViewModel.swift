@@ -10,6 +10,7 @@ import FirebaseDatabase
 import FirebaseDatabaseSwift
 import FirebaseAuth
 import SwiftUI
+import AVFoundation
 
 class StudentViewModel: ObservableObject {
     @Published var students: [Student] = []
@@ -49,21 +50,21 @@ class StudentViewModel: ObservableObject {
                     newStudents.append(student)
                     
                     // Listen for score changes specifically
-//                    let scoreRef = databasePath.child(self.classroomId).child("students").child(snapshot.key).child("score")
-//                    scoreRef.observe(.value) { scoreSnapshot in
-//                        if let newScore = scoreSnapshot.value as? Int, let index = newStudents.firstIndex(where: { $0.id == snapshot.key }) {
-//                            newStudents[index].score = newScore
-//                        }
-//                    }
-//                    self.studentScoresRefs.append(scoreRef)
-//                    // Listen for absents changes specifically
-//                    let absentsRef = databasePath.child(self.classroomId).child("students").child(snapshot.key).child("absents")
-//                    absentsRef.observe(.value) { absentsSnapshot in
-//                        if let newAbsents = absentsSnapshot.value as? [String], let index = newStudents.firstIndex(where: { $0.id == snapshot.key }) {
-//                            newStudents[index].absents = newAbsents
-//                        }
-//                    }
-//                    self.studentScoresRefs.append(scoreRef)
+                    //                    let scoreRef = databasePath.child(self.classroomId).child("students").child(snapshot.key).child("score")
+                    //                    scoreRef.observe(.value) { scoreSnapshot in
+                    //                        if let newScore = scoreSnapshot.value as? Int, let index = newStudents.firstIndex(where: { $0.id == snapshot.key }) {
+                    //                            newStudents[index].score = newScore
+                    //                        }
+                    //                    }
+                    //                    self.studentScoresRefs.append(scoreRef)
+                    //                    // Listen for absents changes specifically
+                    //                    let absentsRef = databasePath.child(self.classroomId).child("students").child(snapshot.key).child("absents")
+                    //                    absentsRef.observe(.value) { absentsSnapshot in
+                    //                        if let newAbsents = absentsSnapshot.value as? [String], let index = newStudents.firstIndex(where: { $0.id == snapshot.key }) {
+                    //                            newStudents[index].absents = newAbsents
+                    //                        }
+                    //                    }
+                    //                    self.studentScoresRefs.append(scoreRef)
                 }
             }
             
@@ -123,14 +124,14 @@ class StudentViewModel: ObservableObject {
         guard let databasePath = databasePath else {
             return
         }
-
+        
         var updates: [String: Any] = [:]
         
         for student in students {
             let studentPath = "students/\(student.id)"
             updates[studentPath] = student.toDictionary()
         }
-
+        
         databasePath.child(classroomId).updateChildValues(updates) { error, _ in
             if let error = error {
                 print("Error updating students: \(error.localizedDescription)")
@@ -206,9 +207,47 @@ class StudentViewModel: ObservableObject {
         databasePath.child(classroomId).child("students").child(studentId).child("absents").setValue(isAbsents ? [Date().string] : []) { error, _ in
             if error == nil {
                 if let index = self.students.firstIndex(where: { $0.id == studentId }) {
-                    self.students[index].absents = [ Date().string]
+                    self.students[index].absents = [Date().string]
                 }
             }
+        }
+    }
+    
+    func convertTextToSpeech(_ inputText: String) {
+//        OpenAITTS.shared.textToSpeech(text: inputText) { data, error in
+//            if let error = error {
+//                print("Error: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            if let data = data {
+//                DispatchQueue.main.async {
+//                    self.playAudio(data: data)
+//                }
+//                
+//            }
+//        }
+        
+        OpenAITTS.shared.googleTTS(inputText) { base64 in
+            if let base64 = base64 {
+//                DispatchQueue.main.async {
+//                    Helpers.shared.play(base64, speed: 1.0)
+//                }
+                DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+                    Helpers.shared.play(base64, speed: 1.25)
+                }
+            }
+        }
+    }
+    
+    var audioPlayer: AVAudioPlayer?
+    private func playAudio(data: Data) {
+        do {
+            audioPlayer = try AVAudioPlayer(data: data, fileTypeHint: AVFileType.mp3.rawValue)
+            audioPlayer!.prepareToPlay()
+            audioPlayer!.play()
+        } catch let error {
+            print("Error playing audio: \(error.localizedDescription)")
         }
     }
 }

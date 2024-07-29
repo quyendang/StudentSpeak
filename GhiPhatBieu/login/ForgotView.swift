@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ForgotView: View {
     @Binding var isPresented: Bool
+    @State var showMessage = false
     @EnvironmentObject var colorSettings: ColorSettings
     @EnvironmentObject var authModel: AuthenticationModel
     @Binding var email: String
@@ -26,7 +27,7 @@ struct ForgotView: View {
                     HStack{
                         Spacer()
                         ProgressView()
-                            .tint(colorSettings.textColor)
+                            .tint(colorSettings.textColor.opacity(authModel.isAuthenticating ? 1 : 0))
                             .padding()
                         Button(action: {
                             forgot()
@@ -46,15 +47,32 @@ struct ForgotView: View {
                         }
                     }
                 })
+                .frame(maxWidth: 600)
                 .padding()
                 .navigationTitle("Forgot password")
+                .navigationBarItems(leading: Button("Cancle", action: {
+                    isPresented = false
+                }).tint(colorSettings.textColor))
                 .alert(errorMesssage ?? "", isPresented: $showingAlert) {
                     Button("OK") { }
                 }
+                .alert(isPresented: $showMessage, content: {
+                    forgotMessage
+                })
             }
             
         })
     }
+    
+    var forgotMessage: Alert {
+        Alert(title: Text("Message?"), message: Text("If this email address exists, an email to reset your password will be sent to this address."),
+              primaryButton: .destructive (Text("Yes")) {
+           
+        },
+              secondaryButton: .cancel(Text("No"))
+        )
+    }
+    
     
     func forgot() {
         if email == "" {

@@ -7,22 +7,27 @@
 
 import SwiftUI
 import PopupView
+import AlertToast
 
 struct ClassroomDetailView: View {
     @State private var showPopupRandom = false
     @State private var showEditStudentForm = false
     @State private var showSumary = false
+    @State private var showToast = false
+    @State private var studentAbsent = Student(id: "", avatar: "", name: "", score: 0, absents: [])
     @State private var editingStudent: Student?
     @State private var selectedStudents: [Student] = []
-    @State private var remainingStudents: [Student]
+    @State private var remainingStudents: [Student] = []
     @ObservedObject var viewModel: StudentViewModel
     @State private var numOfSelectStudent = 1
     @State private var navigateToGroup2View = false
     @State private var navigateToGroup2ListView = false
     @State private var groups: [[Student]] = []
     @State private var halfGroups: [[Student]] = [[], []]
+    
     @EnvironmentObject var colorSettings: ColorSettings
     var classroom: Classroom
+    @AppStorage("studentNameVoice") private var studentNameVoice: Bool = true
     
     
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -38,9 +43,9 @@ struct ClassroomDetailView: View {
     init(classroom: Classroom) {
         self.classroom = classroom
         self.viewModel = StudentViewModel(classroomId: classroom.id)
-        _remainingStudents = State(initialValue: Array(classroom.students.values.filter({ student in
-            !student.absents.contains(Date().string)
-        })))
+//        _remainingStudents = State(initialValue: Array(classroom.students.values.filter({ student in
+//            !student.absents.contains(Date().string)
+//        })))
     }
     
     
@@ -78,8 +83,16 @@ struct ClassroomDetailView: View {
                                         Image(systemName: "pencil")
                                     }
                                     Button(action: {
+                                        showToast = true
+                                        studentAbsent = Student(id: student.id, avatar: student.avatar, name: student.name, score: student.score, absents: student.absents.contains(Date().string) ? [] : [Date().string])
+                                        if studentAbsent.absents.contains(Date().string) {
+                                            Helpers.shared.goOut()
+                                        } else {
+                                            Helpers.shared.goIn()
+                                        }
                                         viewModel.updateAabsent(studentId: student.id, isAbsents: !student.absents.contains(Date().string))
                                     }) {
+                                       
                                         Text(student.absents.contains(Date().string) ? "Present" : "Absent")
                                         Image(systemName: !student.absents.contains(Date().string) ? "figure.run" : "studentdesk")
                                     }
@@ -152,6 +165,10 @@ struct ClassroomDetailView: View {
                 EmptyView()
             }
         )
+        .toast(isPresenting: $showToast, duration: 2) {
+            AlertToast(displayMode: .banner(.slide), type: .systemImage(studentAbsent.absents.contains(Date().string) ? "figure.run" : "studentdesk", colorSettings.textColor), title: "\(studentAbsent.name)", subTitle: studentAbsent.absents.contains(Date().string) ? "Absent!" : "Present!")
+                
+        }
         
     }
     
@@ -169,6 +186,13 @@ struct ClassroomDetailView: View {
                 remainingStudents.removeAll { $0.id == student.id }
             }
         }
+        
+        if studentNameVoice {
+            let stringTTS = selectedStudents.map({$0.name}).joined(separator: " và ")
+            viewModel.convertTextToSpeech(stringTTS)
+            //viewModel
+        }
+        
         
     }
     

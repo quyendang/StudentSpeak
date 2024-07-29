@@ -105,7 +105,6 @@ struct MainView: View {
             }
         }
         .navigationTitle("Classrooms")
-        //.navigationBarColor(backgroundColor: Color.mainBg.uiColor, textColor: colorSettings.textColor.uiColor)
         .navigationBarItems(trailing: Button("Logout", action: authModel.signout).tint(.red))
         .navigationBarItems(trailing: Button(action: {
             editingClassroom = nil

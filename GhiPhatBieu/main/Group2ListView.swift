@@ -36,7 +36,7 @@ struct Group2ListView: View {
                 }
             } header: {
                 HStack(content: {
-                    Text("Rabbit Team")
+                    Text("Rabbit")
                         .foregroundStyle(colorSettings.textColor)
                     
                 })
@@ -90,7 +90,7 @@ struct Group2ListView: View {
                 }
             } header: {
                 HStack(content: {
-                    Text("Turtle Team")
+                    Text("Turtle")
                         .foregroundStyle(colorSettings.textColor)
                 })
             } footer: {

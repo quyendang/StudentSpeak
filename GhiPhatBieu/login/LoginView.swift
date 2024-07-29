@@ -8,7 +8,7 @@
 import SwiftUI
 import AuthenticationServices
 import CryptoKit
-import TTProgressHUD
+
 import FirebaseAuth
 
 struct LoginView: View {
@@ -16,7 +16,7 @@ struct LoginView: View {
     @State var password = ""
     @EnvironmentObject var authModel: AuthenticationModel
     @State var signInHandler: AuthenticationModel?
-    @State var hudConfig = TTProgressHUDConfig(type: .loading, title: "Loading")
+//    @State var hudConfig = TTProgressHUDConfig(type: .loading, title: "Loading")
     @State private var showPasswordReset = false
     @State private var showSignup = false
     @EnvironmentObject var colorSettings: ColorSettings
@@ -103,7 +103,7 @@ struct LoginView: View {
                         .foregroundColor(colorSettings.textColor)
                         .multilineTextAlignment(.center)
                 }
-                
+                .frame(maxWidth: 600)
                 
             }
             .padding()

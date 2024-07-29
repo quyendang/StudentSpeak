@@ -23,6 +23,7 @@ struct AddStudentForm: View {
     @State private var isUploading = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @EnvironmentObject var colorSettings: ColorSettings
+    @FocusState private var isStudentNameFocused: Bool
     var isEditMode: Bool {
         return student != nil
     }
@@ -110,6 +111,10 @@ struct AddStudentForm: View {
                     }
                     
                     TextField("Student Name", text: $studentName)
+                        .focused($isStudentNameFocused)
+                        .onSubmit {
+                            addOrUpdate()
+                        }
 //                    Stepper(value: $studentScore) {
 //                        HStack {
 //                            Text("Student Score")
@@ -117,22 +122,7 @@ struct AddStudentForm: View {
 //                        }
 //                    }
                     Button(action: {
-                        if studentName.isEmpty {
-                            return
-                        }
-                        
-                        if let editingStudent = student {
-                            if let index = students.firstIndex(where: { $0.id == editingStudent.id }) {
-                                students[index].name = studentName
-                                students[index].avatar = studentAvatar
-                                students[index].score = studentScore
-                                student = Student(id: editingStudent.id, avatar: studentAvatar, name: studentName, score: studentScore, absents: editingStudent.absents)
-                                onEditCompleted()
-                            }
-                        } else {
-                            students.append(Student(id: UUID().uuidString, avatar: studentAvatar, name: studentName, score: studentScore, absents: []))
-                        }
-                        isPresented = false
+                        addOrUpdate()
                     }, label: {
                         HStack {
                             Text(isEditMode ? "Update" : "Add")
@@ -140,16 +130,7 @@ struct AddStudentForm: View {
                     })
                     .tint(colorSettings.textColor)
                     .disabled(isUploading)
-                   
-//                    Button("Delete", role: .destructive) {
-//                        if let editingStudent = student {
-//                            if let index = students.firstIndex(where: { $0.id == editingStudent.id }) {
-//                                students.remove(at: index)
-//                            }
-//                        }
-//                        
-//                        isPresented = false
-//                    }
+                    .keyboardShortcut(.defaultAction)
                 }
                 
             }
@@ -169,22 +150,7 @@ struct AddStudentForm: View {
                 }
                 isPresented = false
             }.tint(colorSettings.textColor), trailing: Button(isEditMode ? "Update" : "Add") {
-                if studentName.isEmpty {
-                    return
-                }
-                
-                if let editingStudent = student {
-                    if let index = students.firstIndex(where: { $0.id == editingStudent.id }) {
-                        students[index].name = studentName
-                        students[index].avatar = studentAvatar
-                        students[index].score = studentScore
-                        student = Student(id: editingStudent.id, avatar: studentAvatar, name: studentName, score: studentScore, absents: editingStudent.absents)
-                        onEditCompleted()
-                    }
-                } else {
-                    students.append(Student(id: UUID().uuidString, avatar: studentAvatar, name: studentName, score: studentScore, absents: []))
-                }
-                isPresented = false
+                addOrUpdate()
             }
                 .disabled(isUploading)
                 .keyboardShortcut(.defaultAction)
@@ -201,14 +167,36 @@ struct AddStudentForm: View {
                 }, sourceType: sourceType)
             }
             .onAppear {
+                
                 if let editingStudent = student {
                     studentName = editingStudent.name
                     studentAvatar = editingStudent.avatar
                     studentScore = editingStudent.score
                 }
+                
+                isStudentNameFocused = true
             }
         }
         
+    }
+    
+    func addOrUpdate() {
+        if studentName.isEmpty {
+            return
+        }
+        
+        if let editingStudent = student {
+            if let index = students.firstIndex(where: { $0.id == editingStudent.id }) {
+                students[index].name = studentName
+                students[index].avatar = studentAvatar
+                students[index].score = studentScore
+                student = Student(id: editingStudent.id, avatar: studentAvatar, name: studentName, score: studentScore, absents: editingStudent.absents)
+                onEditCompleted()
+            }
+        } else {
+            students.append(Student(id: UUID().uuidString, avatar: studentAvatar, name: studentName, score: studentScore, absents: []))
+        }
+        isPresented = false
     }
     
     func uploadImage(_ image: UIImage, completion: @escaping (String) -> Void) {
